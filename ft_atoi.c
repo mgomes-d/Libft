@@ -11,40 +11,38 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <limits.h>
 
-int	espace(char c)
+int	max_size(int sign)
 {
-	if ((c >= 9 && c <= 13) || c == ' ' || c == 0)
-		return (1);
-	return (0);
+	if (sign == 1)
+		return (-1);
+	if (sign == -1)
+		return (0);
 }
-
+ 
 int	ft_atoi(const char *str)
 {
-	int		i;
-	long	neg;
-	long	res;
-
-	res = 0;
-	neg = 1;
+	long long	nb;
+	long		sign;
+	int			i;
+	int			cpt;
+ 
+	cpt = 1;
+	nb = 0;
+	sign = 1;
 	i = 0;
-	while (str[i] && espace(str[i]))
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
-	if (str[i] && (str[i] == '-' || str[i] == '+'))
+	if (str[i] == '+' || str[i] == '-')
+		if (str[i++] == '-')
+			sign = -1;
+	while (str[i] == '0')
+		i++;
+	while (ft_isdigit(str[i]))
 	{
-		if (str[i] == '-')
-			neg *= -1;
-		i++;
+		nb = nb * 10 + str[i++] - '0';
+		if (cpt++ > 19 || nb < 0)
+			return (max_size(sign));
 	}
-	while ((str[i] >= '0' && str[i] <= '9'))
-	{
-		res = res * 10 + (str[i] - '0');
-		i++;
-		if (res > (unsigned)LONG_MAX && neg == -1)
-			return (0);
-		else if (res > (unsigned)LONG_MAX && neg == 1)
-			return (-1);
-	}
-	return ((int)res * neg);
+	return ((int)(nb * sign));
 }
