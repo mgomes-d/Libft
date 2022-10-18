@@ -16,7 +16,7 @@ int	max_size(int sign)
 {
 	if (sign == 1)
 		return (-1);
-	if (sign == -1)
+	else
 		return (0);
 }
  
