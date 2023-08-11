@@ -49,7 +49,7 @@ ft_lstnew_bonus.c
 
 This library also includes bonus functions that are part of the 42 "libft" project.
 
-<h1>ft_atoi:<h1>
+<h1>ft_atoi:</h1>
 
 The ft_atoi function is a custom implementation of a common operation in C, known as "string to integer" conversion. This function takes a string as input and converts it into an integer value. Here's a simplified explanation of how it works:
 
